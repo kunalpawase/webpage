@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced QR Code Generator</title>
+
+    <!-- Include Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Include Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-qrcode"></i> QR Code Generator</h1>
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <label for="data">Enter URL or Text:</label>
+            <input type="text" name="data" id="data" placeholder="Enter text or URL..." required>
+
+            <label for="image">Upload a Logo or Image:</label>
+            <input type="file" name="image" id="image" accept="image/*" required>
+
+            <button type="submit"><i class="fas fa-paper-plane"></i> Generate QR Code</button>
+        </form>
+
+        {% if qr_path %}
+        <h2>Your Styled QR Code:</h2>
+        <img src="{{ qr_path }}" alt="Generated QR Code">
+        {% endif %}
+    </div>
+    <footer>
+        &copy; 2024 Advanced QR Code Generator. All rights reserved.
+    </footer>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
